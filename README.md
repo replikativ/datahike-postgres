@@ -7,5 +7,4 @@ Datahike with Postgres as data storage.
 
 Copyright © 2019  lambdaforge UG (haftungsbeschränkt)
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+This program and the accompanying materials are made available under the terms of the Eclipse Public License 1.0.
