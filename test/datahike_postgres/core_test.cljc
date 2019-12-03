@@ -7,12 +7,12 @@
 
 
 (deftest test-postgres-store
-  (let [uri "datahike:file:///tmp/api-fs"
+  (let [uri "datahike:pg://alice:foo@localhost:5432/config-test"
         _ (d/delete-database uri)]
     (is (not (d/database-exists? uri)))
-    (let [db (d/create-database uri :schema-on-read true)
+    (let [_ (d/create-database uri :schema-on-read true)
           conn (d/connect uri)]
-      
+
       (d/transact conn [{ :db/id 1, :name  "Ivan", :age   15 }
                         { :db/id 2, :name  "Petr", :age   37 }
                         { :db/id 3, :name  "Ivan", :age   37 }
@@ -21,6 +21,5 @@
              #{[3] [2] [1]}))
 
       (d/release conn)
-      (is (d/database-exists? uri)))))
-
-
+      (is (d/database-exists? uri))
+      (d/delete-database uri))))
