@@ -6,8 +6,8 @@
 
   :dependencies [[org.clojure/clojure       "1.10.1"   :scope "provided"]
                  [org.clojure/clojurescript "1.10.520" :scope "provided"]
-                 [org.clojars.mihaelkonjevic/konserve-pg "0.1.2" :scope "provided"]
-                 [io.replikativ/datahike "0.2.0"]]
+                 [org.clojars.mihaelkonjevic/konserve-pg "0.1.2"]
+                 [io.replikativ/datahike "0.2.1"]]
 
   :plugins [[lein-cljsbuild "1.1.7"]]
 

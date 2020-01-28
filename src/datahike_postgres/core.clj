@@ -1,9 +1,8 @@
 (ns datahike-postgres.core
   (:require [datahike.store :refer [empty-store delete-store connect-store scheme->index]]
-            [hitchhiker.konserve :as kons]
+            [hitchhiker.tree.bootstrap.konserve :as kons]
             [konserve-pg.core :as kp]
             [superv.async :refer [<?? S]]))
-
 
 (defn pg-path [{:keys [username password host port path]}]
   (clojure.string/join ["postgres://" username ":" password "@" host ":" port path]))
