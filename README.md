@@ -3,7 +3,7 @@
 [Datahike](https://github.com/replikativ/datahike) with [Postgres](https://www.postgresql.org/) as data storage.
 
 
-## Prerequisits
+## Prerequisites
 
 For datahike-postgres you will need to know the configuration of a running Postgres server as well as the name of an existing Postgres user.
 
@@ -12,7 +12,7 @@ On Ubuntu, there are at least two ways to prepare a Postgres server for datahike
 1. The easy way: Use a docker image
 2. Install and prepare Postgres on your native system
 
-For instructions, see below.
+For installation instructions see below.
 
 
 ## Usage
@@ -21,7 +21,7 @@ Add to your leiningen dependencies:
 
 [![Clojars Project](http://clojars.org/io.replikativ/datahike-postgres/latest-version.svg)](http://clojars.org/io.replikativ/datahike-postgres)
 
-You can use the postgres backend now using the keyword `:pg` in the backend
+After including the datahike API and the datahike-postgres namespace, you can use the Postgres backend now using the keyword `:pg`
 
 ```clojure
 (ns project.core
@@ -77,8 +77,10 @@ You can use the postgres backend now using the keyword `:pg` in the backend
 
 Install [Docker](https://www.docker.com/)
 ```bash
-sudo apt install docker
+sudo apt install docker-engine
 ```
+Alternatively, you can get the latest version using the instructions [here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04). 
+
 
 Pull the docker image
 ```bash
@@ -87,7 +89,7 @@ sudo docker pull postgres
 
 Configure the server
 ```bash
-sudo docker run --name test-pg -p <PORT>:<PORT> -e POSTGRES_PASSWORD=<PASSWORD> -e POSTGRES_USER=<USER> -e POSTGRES_DB=<DATABASENAME> -d postgres
+sudo docker run --name test-pg -p <PORT>:5432 -e POSTGRES_PASSWORD=<PASSWORD> -e POSTGRES_USER=<USER> -e POSTGRES_DB=<DATABASENAME> -d postgres
 ```
 
 
