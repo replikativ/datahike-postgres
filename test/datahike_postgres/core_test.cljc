@@ -3,7 +3,7 @@
     #?(:cljs [cljs.test    :as t :refer-macros [is are deftest testing]]
        :clj  [clojure.test :as t :refer        [is are deftest testing]])
     [datahike.api :as d]
-    [datahike-postgres.core :refer :all]))
+    [datahike-postgres.core]))
 
 
 (deftest test-postgres-store

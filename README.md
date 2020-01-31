@@ -37,7 +37,7 @@ After including the datahike API and the datahike-postgres namespace, you can us
              :path "/example-db"})
 
 ;; Alternatively, use an URI as configuration
-;; (def config "datahike:pg://alice:foo@localhost:5432/config-test")
+;; (def config "datahike:pg://alice:foo@localhost:5432/example-db")
 
 ;; Create a database at this place, by default configuration we have a strict
 ;; schema and temporal index
