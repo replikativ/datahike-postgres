@@ -4,18 +4,27 @@
             [konserve-pg.core :as kp]
             [superv.async :refer [<?? S]]))
 
-(defn pg-path [{:keys [username password host port path]}]
-  (clojure.string/join ["postgres://" username ":" password "@" host ":" port path]))
+(defn convert-config
+  "convert datahike config to clojure.java.jdbc config"
+  [{:keys [username password host port dbname ssl sslfactory]}]
+  {:dbtype "postgresql"
+   :user username
+   :password password
+   :host host
+   :port port
+   :dbname dbname
+   :ssl ssl
+   :sslfactory sslfactory})
 
 (defmethod empty-store :pg [config]
   (kons/add-hitchhiker-tree-handlers
-   (<?? S (kp/new-pg-store (pg-path config)))))
+   (<?? S (kp/new-pg-store (convert-config config)))))
 
 (defmethod delete-store :pg [config]
-  (kp/delete-store (pg-path config)))
+  (kp/delete-store (convert-config config)))
 
 (defmethod connect-store :pg [config]
-  (<?? S (kp/new-pg-store (pg-path config))))
+  (<?? S (kp/new-pg-store (convert-config config))))
 
 (defmethod scheme->index :pg [_]
   :datahike.index/hitchhiker-tree)
