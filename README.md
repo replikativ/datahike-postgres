@@ -21,29 +21,27 @@ Add to your leiningen dependencies:
 
 [![Clojars Project](http://clojars.org/io.replikativ/datahike-postgres/latest-version.svg)](http://clojars.org/io.replikativ/datahike-postgres)
 
-After including the datahike API and the datahike-postgres namespace, you can use the Postgres backend now using the keyword `:pg`
+After including the datahike API and the datahike-postgres namespace, you can use the Postgres backend now using the keyword `:pg`. Please refer to [the documentation of datahikes configuration in the corresponding repository.](https://github.com/replikativ/datahike/blob/master/doc/config.md). An example configuration:
 
 ```clojure
 (ns project.core
   (:require [datahike.api :as d]
+            [datahike.config :as c]
             [datahike-postgres.core]))
 
-;; Create a config map with postgres as storage medium
-(def config {:backend :pg
-             :host "localhost"
-             :port 5432
-             :username "alice"
-             :password "foo"
-             :path "/example-db"})
-
-;; Alternatively, use an URI as configuration
-;; (def config "datahike:pg://alice:foo@localhost:5432/example-db")
+;; Reload configuration with your parameters
+(c/reload-config {:backend :pg
+                  :host "localhost"
+                  :port 5432
+                  :username "alice"
+                  :password "foo"
+                  :dbname "example-db"})
 
 ;; Create a database at this place, by default configuration we have a strict
 ;; schema and temporal index
-(d/create-database config)
+(d/create-database)
 
-(def conn (d/connect config))
+(def conn (d/connect))
 
 ;; The first transaction will be the schema we are using:
 (d/transact conn [{:db/ident :name
@@ -68,7 +66,7 @@ After including the datahike API and the datahike-postgres namespace, you can us
 ;; => #{[3 "Alice" 20] [4 "Bob" 30] [5 "Charlie" 40]}
 
 ;; Clean up the database if it is not needed any more
-(d/delete-database config)
+(d/delete-database)
 ```
 
 
