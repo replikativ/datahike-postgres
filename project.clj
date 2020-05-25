@@ -1,4 +1,4 @@
-(defproject io.replikativ/datahike-postgres "0.1.0-SNAPSHOT"
+(defproject io.replikativ/datahike-postgres "0.2.0"
   :description "Datahike with Postgres as data storage."
   :license {:name "Eclipse"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
