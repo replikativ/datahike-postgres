@@ -6,17 +6,19 @@
     [datahike-postgres.core]))
 
 (deftest test-postgres-store-config
-  (let [config {:backend :pg
-                :username "alice"
-                :password "foo"
-                :host "localhost"
-                :port 5432
-                :dbname "config-test"
-                :ssl false
-                :sslfactory "foobar"}
+  (let [config {:store {:backend :pg
+                        :user "alice"
+                        :password "foo"
+                        :host "localhost"
+                        :port 5432
+                        :dbname "config-test"
+                        :ssl false
+                        :sslfactory "foobar"}
+                :schema-flexibility :read
+                :keep-history? false}
         _ (d/delete-database config)]
     (is (not (d/database-exists? config)))
-    (let [_ (d/create-database config :schema-on-read true)
+    (let [_ (d/create-database config)
           conn (d/connect config)]
 
       (d/transact conn [{ :db/id 1, :name  "Ivan", :age   15}

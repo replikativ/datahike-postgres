@@ -26,22 +26,21 @@ After including the datahike API and the datahike-postgres namespace, you can us
 ```clojure
 (ns project.core
   (:require [datahike.api :as d]
-            [datahike.config :as c]
             [datahike-postgres.core]))
 
 ;; Reload configuration with your parameters
-(c/reload-config {:backend :pg
+(def cfg {:store {:backend :pg
                   :host "localhost"
                   :port 5432
-                  :username "alice"
+                  :user "alice"
                   :password "foo"
-                  :dbname "example-db"})
+                  :dbname "example-db"}})
 
 ;; Create a database at this place, by default configuration we have a strict
-;; schema and temporal index
-(d/create-database)
+;; schema validation and keep historical data
+(d/create-database cfg)
 
-(def conn (d/connect))
+(def conn (d/connect cfg))
 
 ;; The first transaction will be the schema we are using:
 (d/transact conn [{:db/ident :name
@@ -66,7 +65,7 @@ After including the datahike API and the datahike-postgres namespace, you can us
 ;; => #{[3 "Alice" 20] [4 "Bob" 30] [5 "Charlie" 40]}
 
 ;; Clean up the database if it is not needed any more
-(d/delete-database)
+(d/delete-database cfg)
 ```
 
 
@@ -173,6 +172,6 @@ Otherwise, follow the instructions above to configure your server correctly.
 
 ## License
 
-Copyright © 2019  lambdaforge UG (haftungsbeschränkt)
+Copyright © 2020  lambdaforge UG (haftungsbeschränkt)
 
 This program and the accompanying materials are made available under the terms of the Eclipse Public License 1.0.

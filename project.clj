@@ -5,8 +5,9 @@
   :url "https://github.com/replikativ/datahike-postgres"
 
   :dependencies [[org.clojure/clojure       "1.10.1"   :scope "provided"]
+                 [environ "1.1.0"]
                  [org.clojars.mihaelkonjevic/konserve-pg "0.1.2"]
-                 [io.replikativ/datahike "0.2.1"]]
+                 [io.replikativ/datahike "0.3.0"]]
 
   :aliases {"test-clj"     ["run" "-m" "datahike-postgres.test/core_test-clj"]
             "test-all"     ["do" ["clean"] ["test-clj"]]}
