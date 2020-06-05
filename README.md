@@ -28,7 +28,6 @@ After including the datahike API and the datahike-postgres namespace, you can us
   (:require [datahike.api :as d]
             [datahike-postgres.core]))
 
-;; Reload configuration with your parameters
 (def cfg {:store {:backend :pg
                   :host "localhost"
                   :port 5432

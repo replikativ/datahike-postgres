@@ -38,7 +38,7 @@
 (s/def :datahike.store.pg/host string?)
 (s/def :datahike.store.pg/dbtype string?)
 (s/def :datahike.store.pg/port int?)
-(s/def :datahike.store.pg/dbame string?)
+(s/def :datahike.store.pg/dbname string?)
 (s/def :datahike.store.pg/ssl boolean?)
 (s/def :datahike.store.pg/sslfactory string?)
 (s/def ::pg (s/keys :req-un [:datahike.store.pg/backend
