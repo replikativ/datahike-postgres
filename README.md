@@ -31,9 +31,9 @@ After including the datahike API and the datahike-postgres namespace, you can us
 (def cfg {:store {:backend :pg
                   :host "localhost"
                   :port 5432
-                  :user "alice"
+                  :username "alice"
                   :password "foo"
-                  :dbname "example-db"}})
+                  :path "/example-db"}})
 
 ;; Create a database at this place, by default configuration we have a strict
 ;; schema validation and keep historical data
